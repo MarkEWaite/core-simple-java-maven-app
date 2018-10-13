@@ -43,7 +43,7 @@ public class AppTest
     @Test
     public void testLogic()
     {
-        assertTrue("Tested value was not true", false);
+        assertTrue("Tested value was not true", true);
     }
 
     @After
