@@ -11,28 +11,24 @@ pipeline {
     }
   }
   stages {
-    stage('Work') {
-      parallel {
-        stage('Build') {
-          steps {
-            sh 'mvn -B -DskipTests clean package'
-          }
+    stage('Build') {
+      steps {
+        sh 'mvn -B -DskipTests clean package'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh 'mvn test'
+      }
+      post {
+        always { 
+          junit '**/*.xml'
         }
-        stage('Test') {
-          steps {
-            sh 'mvn test'
-          }
-          post {
-            always { 
-              junit '**/*.xml'
-            }
-          }
-        }
-        stage('Deliver') {
-          steps {
-            sh 'jenkins/scripts/deliver.sh'
-          }
-        }
+      }
+    }
+    stage('Deliver') {
+      steps {
+        sh 'jenkins/scripts/deliver.sh'
       }
     }
   }
