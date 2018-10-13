@@ -40,6 +40,12 @@ public class AppTest
         }
     }
 
+    @Test
+    public void testLogic()
+    {
+        assertTrue("Tested value was not true", false);
+    }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);
