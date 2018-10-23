@@ -7,17 +7,18 @@ pipeline {
     }
   }
   stages {
-    stage('JDK 11 Build & Test') {
+    stage('Build') {
+      steps {
+        sh 'mvn -B -DskipTests clean package'
+      }
+    }
+    stage('NEW JDK 11 Build & Test') {
       steps {
         container('maven-container-jdk-11') {
         sh 'mvn --version'
         sh 'mvn -B clean package'
+       }
       }
-    }
-    // stage('Test') {
-    //   steps {
-    //     sh 'mvn test'
-    //   }
 
       post {
         always {
