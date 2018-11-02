@@ -3,7 +3,7 @@ pipeline {
     kubernetes {
       label 'maven-pod-template'
       defaultContainer 'maven-container'
-      yamlFile 'KubernetesPod.yaml'
+      yaml 'KubernetesPod.yaml'
     }
   }
   stages {
